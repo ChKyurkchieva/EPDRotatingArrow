@@ -13,7 +13,8 @@ void setup() {
 int16_t angle = 0;
 void loop() {
   engine.init();
-  engine.printArrow(angle);
+  Point origin = engine.getCenterScreen();
+  engine.printArrow(origin,angle);
   angle = angle+10>=360 ? 0 : angle+10;
   delay(50);  
   engine.end();

@@ -43,11 +43,10 @@ Serial.println(normalized.toString());
 }
 
 
-void DisplayEngine::drawArrow(Point origin, int16_t size, uint16_t color, double_t degrees) {
+void DisplayEngine::drawArrow(Point origin, int16_t size, int16_t thickness, uint16_t color, double_t degrees) {
   // Calculate arrowhead points
   double_t angle = (degrees * 71) / 4068;
 
-  uint16_t thickness = 14;
   double_t offset = sqrt(pow(thickness,2)*2)/4;
   drawThickLine(origin.rotatePoint(origin, angle), Point(origin.x, origin.y-size).rotatePoint(origin,angle), thickness, color);
   drawThickLine(Point(origin.x, origin.y-size+offset).rotatePoint(origin,angle), Point(origin.x-size/2, origin.y-size/2+offset).rotatePoint(origin,angle), thickness, color);
@@ -55,9 +54,11 @@ void DisplayEngine::drawArrow(Point origin, int16_t size, uint16_t color, double
 
 }
 
+Point DisplayEngine::getCenterScreen(){
+  return Point(display.width()/2, display.height()/2);
+}
 
-
-void DisplayEngine::printArrow(int16_t angle) {
+void DisplayEngine::printArrow(Point origin, int16_t angle, int16_t thickness, int16_t arrowSize) {
   uint16_t backgroundColor = GxEPD_WHITE;
 
   display.setPartialWindow(0, 0, display.width(), display.height());
@@ -67,7 +68,7 @@ void DisplayEngine::printArrow(int16_t angle) {
   {
     display.fillScreen(backgroundColor);
     
-    drawArrow(Point(127, 60), 60, GxEPD_BLACK, angle);
+    drawArrow(origin, arrowSize, thickness, GxEPD_BLACK, angle);
   }
   while (display.nextPage());
 }
