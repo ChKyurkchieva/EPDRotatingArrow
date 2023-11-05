@@ -56,8 +56,8 @@ void DisplayEngine::drawArrow(Point origin, int16_t size, uint16_t color, double
 }
 
 
-int16_t angle = 0;
-void DisplayEngine::printArrow() {
+
+void DisplayEngine::printArrow(int16_t angle) {
   uint16_t backgroundColor = GxEPD_WHITE;
 
   display.setPartialWindow(0, 0, display.width(), display.height());
@@ -70,8 +70,6 @@ void DisplayEngine::printArrow() {
     drawArrow(Point(127, 60), 60, GxEPD_BLACK, angle);
   }
   while (display.nextPage());
-  
-  angle = angle+10>=360 ? 0 : angle+10;
 }
 
 void DisplayEngine::clear() {

@@ -36,7 +36,7 @@ public:
     void drawArrow(Point origin, int16_t size, uint16_t color, double_t angle=0);
     void drawThickLine(Point first, Point second, int16_t size, uint16_t color);
 
-    void printArrow();
+    void printArrow(int16_t angle=0);
 
     void clear();    
 };

@@ -10,9 +10,11 @@ void setup() {
   engine.end();
 }
 
+int16_t angle = 0;
 void loop() {
   engine.init();
-  engine.printArrow();
+  engine.printArrow(angle);
+  angle = angle+10>=360 ? 0 : angle+10;
   delay(50);  
   engine.end();
 }
