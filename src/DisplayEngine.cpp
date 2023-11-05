@@ -67,7 +67,8 @@ void DisplayEngine::printArrow(Point origin, int16_t angle, int16_t thickness, i
   do
   {
     display.fillScreen(backgroundColor);
-    
+    display.drawCircle(origin.x, origin.y, (arrowSize+thickness)*(360-angle)/360, GxEPD_BLACK);
+     display.drawCircle(origin.x, origin.y, (arrowSize+thickness)*(angle)/360, GxEPD_BLACK);
     drawArrow(origin, arrowSize, thickness, GxEPD_BLACK, angle);
   }
   while (display.nextPage());
