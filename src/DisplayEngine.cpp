@@ -1,4 +1,5 @@
 #include "DisplayEngine.h"
+#include "ComponentBase.h"
 
 DisplayEngine::DisplayEngine()
   : hspi(HSPI),
@@ -11,10 +12,15 @@ void DisplayEngine::init(bool firstCall) {
   display.init(115200, firstCall);
   textDisplay.begin(display);
 
-  setFont("u8g2_font_fub49_t_symbols", u8g2_font_fub49_t_symbol);
+  kur->begin(this);//foreach component.init()
+
+  setFont("u8g2_font_fub49_t_symbols", u8g2_font_fub49_t_symbol); //init of TextComponent
 }
 
 void DisplayEngine::end(){
+
+  kur->end(this);//foreach component.end()
+
   display.hibernate();
 }
 
@@ -42,6 +48,11 @@ Serial.println(normalized.toString());
   }
 }
 
+void DisplayEngine::addComponent(ComponentBase* component)
+{
+  kur=component;
+}
+
 
 void DisplayEngine::drawArrow(Point origin, int16_t size, int16_t thickness, uint16_t color, double_t degrees) {
   // Calculate arrowhead points
@@ -55,7 +66,7 @@ void DisplayEngine::drawArrow(Point origin, int16_t size, int16_t thickness, uin
 }
 
 Point DisplayEngine::getCenterScreen(){
-  return Point(display.width()/2, display.height()/2);
+  return Point(display.height()/2, display.width()/2);
 }
 
 void DisplayEngine::printArrow(Point origin, int16_t angle, int16_t thickness, int16_t arrowSize) {
@@ -66,14 +77,20 @@ void DisplayEngine::printArrow(Point origin, int16_t angle, int16_t thickness, i
   display.firstPage();
   do
   {
+    
     display.fillScreen(backgroundColor);
-    display.drawCircle(origin.x, origin.y, (arrowSize+thickness)*(360-angle)/360, GxEPD_BLACK);
-     display.drawCircle(origin.x, origin.y, (arrowSize+thickness)*(angle)/360, GxEPD_BLACK);
+    
     drawArrow(origin, arrowSize, thickness, GxEPD_BLACK, angle);
+    kur->loop(this);
+
   }
   while (display.nextPage());
 }
 
 void DisplayEngine::clear() {
   display.clearScreen();
+}
+
+void DisplayEngine::drawCircle(Point origin, double_t radius, uint16_t color){
+  display.drawCircle((int16_t) origin.x, (int16_t) origin.y, (int16_t)radius, color);
 }

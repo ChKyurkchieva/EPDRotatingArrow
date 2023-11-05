@@ -1,10 +1,13 @@
+#ifndef POINT_HEADER
+#define POINT_HEADER
+
 #include<Arduino.h>
 struct Point {
 
     double_t x;
     double_t y;
 
-    Point(double_t x, double_t y):x(x),y(y){};
+    Point(double_t x=0, double_t y=0):x(x),y(y){};
 
     Point rotatePoint(Point origin, double_t angle) {
       double_t newX=(x-origin.x)*cos(angle)-(y-origin.y)*sin(angle) + origin.x;
@@ -13,7 +16,9 @@ struct Point {
     }
 
     const String toString(){
-      return String(x) + " "+ String(y);
+      return String(x) + " " + String(y);
     }
 
 };
+
+#endif
