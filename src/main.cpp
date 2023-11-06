@@ -12,6 +12,8 @@ void setup() {
   engine.addComponent(new AnimatingCircle(origin, 0, 60)); //TODO: FREE MEMORY
   engine.addComponent(new AnimatingArrow(origin, 45, 6, 0));
 
+  Serial.println(origin.toString());
+
   engine.init();
   engine.clear();
   engine.end();

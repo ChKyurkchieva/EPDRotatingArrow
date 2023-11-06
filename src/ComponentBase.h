@@ -3,15 +3,17 @@
 
 #include <Arduino.h>
 #include "Point.h"
-
-class DisplayEngine;
+#include "DrawPrimitiveShape.h"
 
 class ComponentBase{
-
+    protected:
+    DrawPrimitiveShape* display;
     public:
-    virtual void begin(DisplayEngine* display);
-    virtual void end(DisplayEngine* display);
-    virtual void loop(DisplayEngine* display);
+    virtual void begin();
+    virtual void end();
+    virtual void loop();
+    void setDisplayEngine(DrawPrimitiveShape* display);
+    
 };
 
 #endif

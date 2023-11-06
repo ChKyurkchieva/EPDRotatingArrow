@@ -1,6 +1,10 @@
 #include "ComponentBase.h"
 #include "DisplayEngine.h"
 
-void ComponentBase::begin(DisplayEngine* display) {}
-void ComponentBase::end(DisplayEngine* display) {}
-void ComponentBase::loop(DisplayEngine* display) {}
+void ComponentBase::begin() {}
+void ComponentBase::end() {}
+void ComponentBase::loop() {}
+void ComponentBase::setDisplayEngine(DrawPrimitiveShape* display)
+{
+    this->display = display;
+}
