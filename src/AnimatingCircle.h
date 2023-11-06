@@ -1,8 +1,9 @@
 #ifndef CIRCLE_COMPONENT_HEADER
-#define CIRCLE_COMPONENT_HEADERR
+#define CIRCLE_COMPONENT_HEADER
 
 
 #include "ComponentBase.h"
+#include "DisplayEngine.h"
 
 class AnimatingCircle : public ComponentBase
 {
@@ -12,10 +13,19 @@ class AnimatingCircle : public ComponentBase
     Point origin;
 
     public:
-    AnimatingCircle(Point origin, double_t min_radius = 0, double_t max_radius = 0);
-    virtual void begin(DisplayEngine* display);
-    virtual void end(DisplayEngine* display);
-    virtual void loop(DisplayEngine* display);
+    AnimatingCircle(Point origin, double_t min_radius, double_t max_radius)
+        :origin(origin),radius(min_radius), min_radius(min_radius), max_radius(max_radius) {}
+
+    virtual void loop(DisplayEngine* display)
+    {
+        radius = radius + 5;
+
+        if(radius>=max_radius)
+            radius=min_radius;
+        display->drawCircle(origin, radius, DisplayEngine::COLOR_BLACK);
+        display->drawCircle(origin, max_radius-radius, DisplayEngine::COLOR_BLACK);
+    }
 };
+
 
 #endif

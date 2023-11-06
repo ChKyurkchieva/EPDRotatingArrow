@@ -54,7 +54,7 @@ void DisplayEngine::addComponent(ComponentBase* component)
 {
   components.add(component);
   Serial.println("Cortana is right...");
-  Serial.println(components.isEmpty());
+  Serial.println(components.size());
 }
 
 
@@ -73,7 +73,7 @@ Point DisplayEngine::getCenterScreen(){
   return Point(display.height()/2, display.width()/2);
 }
 
-void DisplayEngine::printArrow(Point origin, int16_t angle, int16_t thickness, int16_t arrowSize) {
+void DisplayEngine::loop() {
   uint16_t backgroundColor = GxEPD_WHITE;
 
   display.setPartialWindow(0, 0, display.width(), display.height());
@@ -84,7 +84,7 @@ void DisplayEngine::printArrow(Point origin, int16_t angle, int16_t thickness, i
     
     display.fillScreen(backgroundColor);
     
-    drawArrow(origin, arrowSize, thickness, GxEPD_BLACK, angle);
+    //drawArrow(origin, arrowSize, thickness, GxEPD_BLACK, angle);
     
     for(ComponentBase* element : components)
       element->loop(this);

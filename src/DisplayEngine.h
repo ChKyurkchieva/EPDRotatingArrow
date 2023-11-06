@@ -52,7 +52,7 @@ public:
     void drawArrow(Point origin, int16_t size, int16_t thickness, uint16_t color, double_t angle=0);
     void drawThickLine(Point first, Point second, int16_t size, uint16_t color);
 
-    void printArrow(Point origin, int16_t angle=0, int16_t thickness=6, int16_t arrowSize=45);
+    void loop();
 
     void clear();    
 };
