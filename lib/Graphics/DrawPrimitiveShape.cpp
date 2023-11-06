@@ -15,7 +15,6 @@ void DrawPrimitiveShape::setFont(const char name[], const uint8_t *font)
 void DrawPrimitiveShape::drawCircle(Point origin, double_t radius, uint16_t color)
 {
     display->drawCircle((int16_t) origin.x, (int16_t) origin.y, (int16_t)radius, color);
-
 }
 
 void DrawPrimitiveShape::drawThickLine(Point first, Point second, int16_t size, uint16_t color)

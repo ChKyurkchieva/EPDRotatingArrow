@@ -57,7 +57,3 @@ void DisplayEngine::loop() {
 void DisplayEngine::clear() {
   display->clearScreen();
 }
-
-// void DisplayEngine::drawCircle(Point origin, double_t radius, uint16_t color){
-//   display.drawCircle((int16_t) origin.x, (int16_t) origin.y, (int16_t)radius, color);
-// }

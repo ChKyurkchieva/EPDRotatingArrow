@@ -1,8 +1,8 @@
 #ifndef ANIMATING_ARROW_HEADER
 #define ANIMATING_ARROW_HEADER
 
-#include "ComponentBase.h"
-#include "DisplayEngine.h"
+#include <ComponentBase.h>
+#include <DisplayEngine.h>
 
 class AnimatingArrow : public ComponentBase
 {

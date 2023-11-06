@@ -1,7 +1,7 @@
 #include <Arduino.h>
-#include "DisplayEngine.h"
-#include "AnimatingCircle.h"
-#include "AnimatingArrow.h"
+#include <DisplayEngine.h>
+#include <AnimatingCircle.h>
+#include <AnimatingArrow.h>
 
 DisplayEngine engine = DisplayEngine();
 Point origin = engine.getCenterScreen();

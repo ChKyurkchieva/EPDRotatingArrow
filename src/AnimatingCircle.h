@@ -1,9 +1,7 @@
 #ifndef CIRCLE_COMPONENT_HEADER
 #define CIRCLE_COMPONENT_HEADER
 
-
-#include "ComponentBase.h"
-//#include "DisplayEngine.h"
+#include <ComponentBase.h>
 
 class AnimatingCircle : public ComponentBase
 {
@@ -26,6 +24,5 @@ class AnimatingCircle : public ComponentBase
         display->drawCircle(origin, max_radius-radius, DrawPrimitiveShape::COLOR_BLACK);
     }
 };
-
 
 #endif
