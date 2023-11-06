@@ -14,7 +14,7 @@ void AnimatingCircle::loop(DisplayEngine* display)
     if(radius>=max_radius)
         radius=min_radius;
     display->drawCircle(origin, radius, DisplayEngine::COLOR_BLACK);
-    display->drawCircle(origin, max_radius-radius, DisplayEngine::COLOR_BLACK); //foreach component.loop()
+    display->drawCircle(origin, max_radius-radius, DisplayEngine::COLOR_BLACK);
 }
 
 void AnimatingCircle::begin(DisplayEngine* display)

@@ -19,6 +19,7 @@
 
 #include "bitmaps/Bitmaps128x250.h" // 2.13" b/w
 #include "Point.h"
+#include "ArrayList.h"
 
 class ComponentBase;
 
@@ -27,7 +28,8 @@ private:
     GxEPD2_DISPLAY_CLASS<GxEPD2_DRIVER_CLASS, MAX_HEIGHT(GxEPD2_DRIVER_CLASS)> display;
     SPIClass hspi;
     U8G2_FOR_ADAFRUIT_GFX textDisplay;
-    ComponentBase* kur;
+
+    ArrayList<ComponentBase*> components;
 
 public:
 

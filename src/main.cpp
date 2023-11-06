@@ -6,7 +6,7 @@ DisplayEngine engine = DisplayEngine();
 Point origin = engine.getCenterScreen();
 void setup() {  
   Serial.begin(115200);
-  engine.addComponent(new AnimatingCircle(origin, 0, 60));
+  engine.addComponent(new AnimatingCircle(origin, 0, 60)); //TODO: FREE MEMORY
   
   //display.add(AnimatingArrow(origin, thickness, size))
 

@@ -1,25 +1,27 @@
 #include "DisplayEngine.h"
 #include "ComponentBase.h"
 
+
 DisplayEngine::DisplayEngine()
   : hspi(HSPI),
-    display(GxEPD2_DRIVER_CLASS(/*CS=*/15, /*DC=*/27, /*RST=*/26, /*BUSY=*/25)) {
-  hspi.begin(13, 12, 14, 15);  // remap hspi for EPD (swap pins)
-  display.epd2.selectSPI(hspi, SPISettings(4000000, MSBFIRST, SPI_MODE0));
-}
+    display(GxEPD2_DRIVER_CLASS(/*CS=*/15, /*DC=*/27, /*RST=*/26, /*BUSY=*/25))
+     {
+      hspi.begin(13, 12, 14, 15);  // remap hspi for EPD (swap pins)
+      display.epd2.selectSPI(hspi, SPISettings(4000000, MSBFIRST, SPI_MODE0));
+    }
 
 void DisplayEngine::init(bool firstCall) {
   display.init(115200, firstCall);
   textDisplay.begin(display);
-
-  kur->begin(this);//foreach component.init()
+  for(ComponentBase* element : components)
+    element->begin(this);//foreach component.init()
 
   setFont("u8g2_font_fub49_t_symbols", u8g2_font_fub49_t_symbol); //init of TextComponent
 }
 
 void DisplayEngine::end(){
-
-  kur->end(this);//foreach component.end()
+  for(ComponentBase* element : components)
+    element->end(this);//foreach component.end()
 
   display.hibernate();
 }
@@ -50,7 +52,9 @@ Serial.println(normalized.toString());
 
 void DisplayEngine::addComponent(ComponentBase* component)
 {
-  kur=component;
+  components.add(component);
+  Serial.println("Cortana is right...");
+  Serial.println(components.isEmpty());
 }
 
 
@@ -81,7 +85,9 @@ void DisplayEngine::printArrow(Point origin, int16_t angle, int16_t thickness, i
     display.fillScreen(backgroundColor);
     
     drawArrow(origin, arrowSize, thickness, GxEPD_BLACK, angle);
-    kur->loop(this);
+    
+    for(ComponentBase* element : components)
+      element->loop(this);
 
   }
   while (display.nextPage());
