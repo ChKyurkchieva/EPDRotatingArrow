@@ -30,3 +30,8 @@ void DrawPrimitiveShape::drawThickLine(Point first, Point second, int16_t size, 
       display->drawLine(first.x + offset.x, first.y + offset.y, second.x + offset.x, second.y + offset.y, color);
     }
 }
+
+void DrawPrimitiveShape::drawThickRectangle(Point first, Point second, uint16_t color)
+{
+    display->drawRect(first.x, first.y,second.x, second.y, color);
+}

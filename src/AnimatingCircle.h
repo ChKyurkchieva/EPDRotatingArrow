@@ -18,8 +18,8 @@ class AnimatingCircle : public ComponentBase
     {
         radius = radius + 5;
 
-        if(radius>=max_radius)
-            radius=min_radius;
+        if(radius >= max_radius)
+            radius = min_radius;
         display->drawCircle(origin, radius, DrawPrimitiveShape::COLOR_BLACK);
         display->drawCircle(origin, max_radius-radius, DrawPrimitiveShape::COLOR_BLACK);
     }

@@ -34,6 +34,7 @@ class DrawPrimitiveShape
     void setFont(const char name[], const uint8_t *font);
     void drawCircle(Point origin, double_t radius, uint16_t color);
     void drawThickLine(Point first, Point second, int16_t size, uint16_t color);
+    void drawThickRectangle(Point first, Point second, uint16_t color);
 };
 
 #endif
